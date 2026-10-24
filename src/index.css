@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-script: "Alex Brush", cursive;
+}
+
+@layer base {
+  * {
+    border-color: #EAE4DC;
+  }
+
+  html.dark * {
+    border-color: #27272a;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    background-color: #FAF7F2;
+    color: #2D2825;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Dark mode base overrides applied when <html> has the `dark` class */
+  html.dark, html.dark body {
+    background-color: #121214;
+    color: #f4f4f5;
+  }
+}
+
+/* Custom scrollbars — light mode */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F4EFEB;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9CEC3;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #BEB1A4;
+}
+
+/* Custom scrollbars — dark mode */
+html.dark ::-webkit-scrollbar-track {
+  background: #1e1e20;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
+/* Print styling */
+@media print {
+  body {
+    background: transparent !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
