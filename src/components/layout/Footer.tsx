@@ -52,9 +52,23 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="pt-6 border-t border-[#E8DFC8]/60 dark:border-zinc-800/60 flex flex-col sm:flex-row items-center justify-between text-xs text-[#82786F] dark:text-zinc-500 gap-2">
-          <p>© {new Date().getFullYear()} BabyBloom — 30 Days of My Baby. Built with care for growing families.</p>
-          <div className="flex items-center gap-4">
+        <div className="pt-6 border-t border-[#E8DFC8]/60 dark:border-zinc-800/60 flex flex-col sm:flex-row items-center justify-between text-xs text-[#82786F] dark:text-zinc-500 gap-3">
+          <div className="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-2 text-center sm:text-left">
+            <p>© {new Date().getFullYear()} BabyBloom — 30 Days of My Baby.</p>
+            <span className="hidden sm:inline">•</span>
+            <p>
+              Developed by{' '}
+              <a
+                href="https://jhudel.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-[#80664C] dark:text-amber-400 hover:underline transition-colors"
+              >
+                jhudel
+              </a>
+            </p>
+          </div>
+          <div className="flex items-center gap-3">
             <span className="flex items-center gap-1">
               <Lock className="w-3 h-3 text-emerald-600 dark:text-emerald-400" /> Offline Capable
             </span>
