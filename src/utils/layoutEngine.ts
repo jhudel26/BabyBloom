@@ -38,14 +38,14 @@ export function computeCollageLayout(
     footerHeight = Math.round(canvasHeight * 0.05);
   } else if (layout === 'magazine') {
     headerHeight = Math.round(canvasHeight * 0.12);
-    footerHeight = Math.round(canvasHeight * 0.04);
+    footerHeight = Math.round(canvasHeight * 0.045);
   } else if (layout === 'calendar') {
     headerHeight = Math.round(canvasHeight * 0.11);
-    footerHeight = Math.round(canvasHeight * 0.03);
+    footerHeight = Math.round(canvasHeight * 0.04);
   } else {
     // grid-30, hero-timeline, heart, minimalist-wall
     headerHeight = Math.round(canvasHeight * 0.09);
-    footerHeight = Math.round(canvasHeight * 0.03);
+    footerHeight = Math.round(canvasHeight * 0.04);
   }
 
   const contentX = padding;

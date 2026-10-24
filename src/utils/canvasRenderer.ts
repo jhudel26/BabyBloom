@@ -425,14 +425,36 @@ function drawFooter(
 
   const centerX = rect.x + rect.width / 2;
   const centerY = rect.y + rect.height / 2;
-  const footerFontSize = Math.round(Math.max(10, Math.min(rect.height * 0.5, 14)));
 
+  // Scale font size proportionally to the canvas resolution so it is clearly readable
+  // both in screen preview and in 300 DPI high-resolution exports.
+  let footerFontSize = Math.round(Math.max(16, Math.min(rect.height * 0.42, rect.width * 0.024)));
+
+  const milestoneMsg = config.milestoneText || 'BabyBloom Keepsake • Thirty Days of Love & Wonder';
+
+  // Ensure long custom dedication messages fit comfortably without clipping off the edges
+  ctx.font = `500 ${footerFontSize}px ${theme.fontBody}`;
+  const textWidth = ctx.measureText(milestoneMsg).width;
+  const maxAllowedWidth = rect.width * 0.88;
+  if (textWidth > maxAllowedWidth && textWidth > 0) {
+    footerFontSize = Math.max(14, Math.round(footerFontSize * (maxAllowedWidth / textWidth)));
+  }
+
+  // Draw delicate accent line above the footer text
+  ctx.strokeStyle = theme.borderColor;
+  ctx.lineWidth = Math.max(1, Math.round(rect.width * 0.00075));
+  ctx.globalAlpha = 0.45;
+  const dividerWidth = Math.min(rect.width * 0.32, Math.max(160, textWidth * 0.75));
+  ctx.beginPath();
+  ctx.moveTo(centerX - dividerWidth / 2, rect.y + 4);
+  ctx.lineTo(centerX + dividerWidth / 2, rect.y + 4);
+  ctx.stroke();
+
+  // Draw milestone dedication text with crisp contrast and readable scale
+  ctx.font = `500 ${footerFontSize}px ${theme.fontBody}`;
   ctx.fillStyle = theme.subtitleColor;
-  ctx.font = `normal ${footerFontSize}px ${theme.fontBody}`;
-  ctx.globalAlpha = 0.65;
-
-  const milestoneMsg = config.milestoneText || 'BabyBloom Keepsake • 30 Days of Unconditional Love';
-  ctx.fillText(milestoneMsg, centerX, centerY);
+  ctx.globalAlpha = 0.92;
+  ctx.fillText(milestoneMsg, centerX, centerY + 3);
 
   ctx.restore();
 }
